@@ -1,10 +1,11 @@
 import DashboardHeader from '@/components/common/DashboardHeader'
-import { columns, getColumns } from '@/components/data-table/columns/userColumns'
+import { getUserColumns } from '@/components/data-table/columns/userColumns'
 import DataTable from '@/components/data-table/DataTable'
 import Layout from '@/components/layout/Layout'
 import { Button } from '@/components/ui/button'
+import useAbility from '@/hooks/useAbility'
 import { Plus } from 'lucide-react'
-import React from 'react'
+import React, { useMemo } from 'react'
 
 const data = [
   {
@@ -20,8 +21,12 @@ const data = [
     role: "User",
   },
 ];
-
-const districts = () => {
+const Districts = () => {
+  const ability = useAbility()
+  const columns = useMemo(
+    () => getUserColumns(ability),
+    [ability]
+  );
   return (
     <Layout>
         <DashboardHeader
@@ -54,4 +59,4 @@ const districts = () => {
   )
 }
 
-export default districts
+export default Districts

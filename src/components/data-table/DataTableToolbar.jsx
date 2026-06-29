@@ -11,7 +11,9 @@ const DataTableToolbar = ({
   searchPlaceholder = "Search...",
   children,
 }) => {
-  const isFiltered = table.getState().columnFilters.length > 0;
+  const isFiltered =
+  table.getState().columnFilters.length > 0 ||
+  !!table.getState().globalFilter;
 
   return (
     <div className="flex items-center justify-between gap-4 border-b p-4">
@@ -31,7 +33,10 @@ const DataTableToolbar = ({
           <Button
             variant="ghost"
             size="sm"
-            onClick={() => table.resetColumnFilters()}
+            onClick={() => {
+              table.resetColumnFilters();
+              table.setGlobalFilter("");
+            }}
           >
             <X className="mr-2 h-4 w-4" />
             Reset

@@ -1,22 +1,15 @@
-"use client";
-
-import { MoreHorizontal, Eye, Pencil, Trash2 } from "lucide-react";
-
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { MoreHorizontal } from "lucide-react";
 
-const ActionMenu = ({
-  row,
-  onView,
-  onEdit,
-  onDelete,
-}) => {
+const ActionMenu = ({ actions = [] }) => {
+  if (!actions.length) return null;
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -25,26 +18,21 @@ const ActionMenu = ({
         </Button>
       </DropdownMenuTrigger>
 
-      <DropdownMenuContent align="end" className="w-44">
-        <DropdownMenuItem onClick={() => onView?.(row)}>
-          <Eye className="mr-2 h-4 w-4 text-sky-600" />
-          View
-        </DropdownMenuItem>
+      <DropdownMenuContent align="end">
+        {actions.map((action) => {
+          const Icon = action.icon;
 
-        <DropdownMenuItem onClick={() => onEdit?.(row)}>
-          <Pencil className="mr-2 h-4 w-4 text-amber-600" />
-          Edit
-        </DropdownMenuItem>
-
-        <DropdownMenuSeparator />
-
-        <DropdownMenuItem
-          onClick={() => onDelete?.(row)}
-          className="text-red-600 focus:text-red-600"
-        >
-          <Trash2 className="mr-2 h-4 w-4" />
-          Delete
-        </DropdownMenuItem>
+          return (
+            <DropdownMenuItem
+              key={action.label}
+              onClick={action.onClick}
+              className={action.className}
+            >
+              <Icon className={`mr-2 h-4 w-4 ${action.iconClassName ?? ""}`} />
+              {action.label}
+            </DropdownMenuItem>
+          );
+        })}
       </DropdownMenuContent>
     </DropdownMenu>
   );

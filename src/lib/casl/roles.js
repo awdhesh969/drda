@@ -5,6 +5,16 @@ export const ROLES = {
 
   "District Manager": [
     "read:Dashboard",
+    "read:Location",
+    "read:Districts",
+    "create:Districts",
+    "update:Districts",
+    "read:Talukas",
+    "create:Talukas",
+    "update:Talukas",
+    "read:Villages",
+    "create:Villages",
+    "update:Villages",
     "read:Users",
     "update:Users",
   ],
