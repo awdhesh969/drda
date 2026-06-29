@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import Sidebar from "./Sidebar";
 import Header from "./Header";
 import useAuth from "@/hooks/useAuth";
+import GlobalLoader from "../common/GlobalLoader";
 
 export default function Layout({ children }) {
   const {user} = useAuth();
@@ -18,7 +19,7 @@ export default function Layout({ children }) {
       />
       <motion.div
         layout
-        className="flex flex-1 flex-col overflow-hidden p-4"
+        className="flex flex-1 flex-col gap-4 overflow-hidden p-4"
         transition={{
           type: "spring",
           stiffness: 260,
@@ -28,7 +29,7 @@ export default function Layout({ children }) {
         <Header roleName={userData.role_name} />
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 px-1">
           <div>
-            <h1 className="text-2xl font-bold text-slate-900 tracking-tight capitalize">Super Admin Dashboard</h1>
+            <h1 className="text-2xl font-bold text-slate-900 tracking-tight capitalize">{userData.role_name} Dashboard</h1>
             <p className="text-sm text-slate-500">Monitor CRP activity with a calm, focused workspace.</p>
           </div>
           <div
@@ -42,7 +43,8 @@ export default function Layout({ children }) {
               <span
               className="text-[11px] font-bold uppercase tracking-widest text-emerald-700">Logged In</span></div>
           </div>
-          <main className="flex-1 overflow-auto bg-gray-50 p-6">
+          <main className="bg-white rounded-[1.5rem] border border-slate-100 p-6 shadow-sm min-h-[480px]">
+            <GlobalLoader />
             {children}
           </main>
       </motion.div>

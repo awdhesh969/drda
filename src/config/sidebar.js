@@ -3,36 +3,71 @@ import {
   Users,
   Shield,
   Settings,
+  MapPin,
+  ChevronRight,
 } from "lucide-react";
+
+const rootPath = "/dashboard";
 
 const sidebar = [
   {
     title: "Dashboard",
-    href: "/dashboard",
+    href: rootPath,
     icon: LayoutDashboard,
     action: "read",
     subject: "Dashboard",
   },
   {
-    title: "User Management",
+    title: "Location",
+    icon: MapPin,
+    action: "read",
+    subject: "Location",
+    children: [
+      {
+        title: "Districts",
+        href: `${rootPath}/location/districts`,
+        icon: ChevronRight,
+        action: "read",
+        action: "create",
+        action: "update",
+        action: "delete",
+        subject: "Districts",
+      },
+      {
+        title: "Talukas",
+        href: `${rootPath}/location/talukas`,
+        icon: ChevronRight,
+        action: "read",
+        action: "create",
+        action: "update",
+        action: "delete",
+        subject: "Talukas",
+      },
+      {
+        title: "Villages",
+        href: `${rootPath}/location/villages`,
+        icon: ChevronRight,
+        action: "read",
+        action: "create",
+        action: "update",
+        action: "delete",
+        subject: "Villages",
+      },
+    ],
+  },
+  {
+    title: "CRP Management",
     icon: Users,
     action: "read",
     subject: "Users",
     children: [
       {
-        title: "Users",
-        href: "/users",
-        icon: Users,
+        title: "CRP List",
+        href: `${rootPath}/crp-management`,
+        icon: ChevronRight,
         action: "read",
-        subject: "Users",
-      },
-      {
-        title: "Roles",
-        href: "/roles",
-        icon: Shield,
-        action: "read",
-        subject: "Roles",
-      },
+        subject: "CRP List",
+      }
     ],
   },
   {

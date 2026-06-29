@@ -35,7 +35,7 @@ roleName,
   }, []);
 return (
 <header
-  className="flex items-center justify-between px-4 py-2 bg-white border border-slate-200/60 rounded-xl shadow-sm mb-3">
+  className="flex items-center justify-between px-4 py-2 bg-white border border-slate-200/60 rounded-xl shadow-sm">
   <button type="button" className="p-2 -ml-2 text-slate-500 hover:bg-slate-50 rounded-lg lg:hidden transition-colors">
     <Menu size={20} />
   </button>

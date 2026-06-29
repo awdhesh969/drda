@@ -57,7 +57,7 @@ export default function Sidebar({user}) {
         <>
           <button
             onClick={() => !collapsed && toggleMenu(item.title)}
-            className={`flex w-full items-center rounded-xl px-3 py-3 ${
+            className={`flex w-full items-center rounded-xl px-3 py-2 ${
               active
                 ? "transition-all duration-200 bg-white/10 text-blue-50 shadow-[inset_0_1px_0_rgba(255,255,255,0.08),0_2px_8px_rgba(0,0,0,0.25)] border border-blue-400/40"
                 : "group flex items-center justify-between gap-2.5 rounded-2xl px-3 py-2.5 text-sm transition-all duration-200 text-slate-200 hover:text-white hover:bg-white/5 border border-transparent"
@@ -66,7 +66,7 @@ export default function Sidebar({user}) {
             <Icon size={20} />
 
             {!collapsed && (
-              <span className="ml-3 flex-1 text-left">
+              <span className="ml-3 flex-1 text-left text-sm">
                 {item.title}
               </span>
             )}
@@ -92,7 +92,7 @@ export default function Sidebar({user}) {
             transition={{ duration: 0.3 }}
             className="overflow-hidden"
           >
-            <div className="ml-6 mt-2 space-y-1 border-l border-gray-700 pl-4">
+            <div className="ml-6 mt-2 space-y-1 border-l border-white/70 pl-4">
               {item.children.map((child) => (
                 <MenuItem key={child.title} item={child} />
               ))}
@@ -102,7 +102,7 @@ export default function Sidebar({user}) {
       ) : (
         <Link href={item.href}>
           <div
-            className={`flex items-center rounded-xl px-3 py-3 ${
+            className={`flex items-center rounded-xl px-3 py-2 ${
               pathname === item.href
                 ? "transition-all duration-200 bg-white/10 text-blue-50 shadow-[inset_0_1px_0_rgba(255,255,255,0.08),0_2px_8px_rgba(0,0,0,0.25)] border border-blue-400/40"
                 : "text-gray-300 hover:text-white hover:bg-white/5 border border-transparent transition-all duration-200"
@@ -111,7 +111,7 @@ export default function Sidebar({user}) {
             <Icon size={20} />
 
             {!collapsed && (
-              <span className="ml-3">
+              <span className="ml-3 text-sm">
                 {item.title}
               </span>
             )}
