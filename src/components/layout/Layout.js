@@ -13,13 +13,13 @@ export default function Layout({ children }) {
   const userData = user?.data || {};
 
   return (
-    <div className="flex h-screen overflow-hidden bg-gray-100">
+    <div className="flex min-h-screen w-full bg-[#f8fafc] text-slate-900 bg-gray-100">
       <Sidebar
         user={userData}
       />
       <motion.div
         layout
-        className="flex flex-1 flex-col gap-4 overflow-hidden p-4"
+        className="flex flex-1 flex-col gap-4 p-4"
         transition={{
           type: "spring",
           stiffness: 260,

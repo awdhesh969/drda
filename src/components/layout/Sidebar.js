@@ -132,7 +132,7 @@ export default function Sidebar({user}) {
         stiffness: 260,
         damping: 25,
       }}
-      className="h-screen overflow-hidden border-r border-slate-800/60 bg-linear-to-b from-blue-950 via-blue-900 to-slate-950 text-slate-50"
+      className="h-screen sticky top-0 z-0 overflow-hidden border-r border-slate-800/60 bg-linear-to-b from-blue-950 via-blue-900 to-slate-950 text-slate-50"
     >
       {/* Header */}
 

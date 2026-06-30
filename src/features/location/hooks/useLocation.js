@@ -1,14 +1,11 @@
 import api from "@/utils/api";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { deleteDistrict, deleteTaluka, deleteVillage, getDistrictDetails, getTalukaDetails, getTalukas, getVillageDetails, getVillages, saveUpdateDistricts, saveUpdateTalukas } from "../api/locationApi";
+import { deleteDistrict, deleteTaluka, deleteVillage, getDistrict, getDistrictDetails, getTalukaDetails, getTalukas, getVillageDetails, getVillages, saveUpdateDistricts, saveUpdateTalukas } from "../api/locationApi";
 
 export const useDistricts = () => {
   return useQuery({
     queryKey: ["districts"],
-    queryFn: async () => {
-      const res = await api.get("districts");
-      return res.data || [];
-    },
+    queryFn: getDistrict,
     refetchOnWindowFocus: false,
   });
 }

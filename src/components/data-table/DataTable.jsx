@@ -4,6 +4,7 @@ import {
   flexRender,
   getCoreRowModel,
   getFilteredRowModel,
+  getPaginationRowModel,
   useReactTable,
 } from "@tanstack/react-table";
 
@@ -17,6 +18,7 @@ import {
 } from "@/components/ui/table";
 
 import DataTableEmpty from "./DataTableEmpty";
+import DataTablePagination from "./DataTablePagination";
 import DataTableToolbar from "./DataTableToolbar";
 
 const DataTable = ({
@@ -27,6 +29,10 @@ const DataTable = ({
   toolbarActions,
 }) => {
   const [globalFilter, setGlobalFilter] = useState("");
+  const [pagination, setPagination] = useState({
+    pageIndex: 0,
+    pageSize: 10,
+  });
 
   const table = useReactTable({
     data,
@@ -34,12 +40,15 @@ const DataTable = ({
 
     state: {
       globalFilter,
+      pagination,
     },
 
     onGlobalFilterChange: setGlobalFilter,
+    onPaginationChange: setPagination,
 
     getCoreRowModel: getCoreRowModel(),
     getFilteredRowModel: getFilteredRowModel(),
+    getPaginationRowModel: getPaginationRowModel(),
 
     globalFilterFn: (row, _, value) => {
       if (!Array.isArray(searchKey)) return true;
@@ -58,14 +67,16 @@ const DataTable = ({
         table={table}
         searchPlaceholder={searchPlaceholder}
         toolbarActions={toolbarActions}
-      />
+      >
+        {toolbarActions}
+      </DataTableToolbar>
 
       <Table>
         <TableHeader>
           {table.getHeaderGroups().map((group) => (
             <TableRow key={group.id}>
               {group.headers.map((header) => (
-                <TableHead key={header.id}>
+                <TableHead key={header.id} className="px-6 text-xs py-4font-bold uppercase tracking-wider text-slate-500 bg-transparent text-left">
                   {header.isPlaceholder
                     ? null
                     : flexRender(
@@ -83,7 +94,7 @@ const DataTable = ({
             table.getRowModel().rows.map((row) => (
               <TableRow key={row.id}>
                 {row.getVisibleCells().map((cell) => (
-                  <TableCell key={cell.id}>
+                  <TableCell key={cell.id} className="px-6 py-4">
                     {flexRender(
                       cell.column.columnDef.cell,
                       cell.getContext()
@@ -97,6 +108,10 @@ const DataTable = ({
           )}
         </TableBody>
       </Table>
+
+      <div className="border-t p-4">
+        <DataTablePagination table={table} />
+      </div>
     </div>
   );
 };

@@ -1,28 +1,24 @@
 import ActionMenu from "./ActionMenu";
 import { createActions } from "./actions/createActions";
 
-export const getUserColumns = (ability) => [
+export const districtColumns = (ability) => [
   {
     accessorKey: "id",
     header: "ID",
   },
   {
     accessorKey: "name",
-    header: "Name",
+    header: "District Name",
   },
   {
-    accessorKey: "email",
-    header: "Email",
-  },
-  {
-    accessorKey: "role",
-    header: "Role",
+    accessorKey: "census_code",
+    header: "Census Code",
   },
   {
     id: "actions",
     header: () => <div className="text-center">Actions</div>,
     cell: ({ row }) => {
-      const user = row.original;
+      const district = row.original;
 
       return (
         <div className="flex justify-center">
@@ -30,10 +26,10 @@ export const getUserColumns = (ability) => [
             actions={createActions({
               ability,
               subject: "Districts",
-              row: user,
-              onView: (user) => console.log("View", user),
-              onEdit: (user) => console.log("Edit", user),
-              onDelete: (user) => console.log("Delete", user),
+              row: district,
+              onView: (district) => console.log("View", district),
+              onEdit: (district) => console.log("Edit", district),
+              onDelete: (district) => console.log("Delete", district),
             })}
           />
         </div>
